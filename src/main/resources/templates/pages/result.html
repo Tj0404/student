@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class = "content" layout:fragment="content">
+    <table class="table">
+
+        <tr>
+            <th>학년</th>
+            <th>반</th>
+            <th>번호</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>수학</th>
+            <th>영어</th>
+            <th>역사</th>
+            <th>합계</th>
+            <th>평균</th>
+            <th>석차</th>
+        </tr>
+
+        <tr th:each="dto : ${dtos}" th:object="${dto}">
+            <td th:text = "${#strings.substring(dto.studentNo, 0, 1)}"></td>
+            <td th:text = "${#strings.substring(dto.studentNo, 1, 3)}"></td>
+            <td th:text = "${#strings.substring(dto.studentNo, 3, 5)}"></td>
+            <td th:text = "${dto.name}"></td>
+
+            <div th:if="${dto.examDto != null}">
+                <td th:text = "${dto.examDto?.kor}"></td>
+                <td th:text = "${dto.examDto?.math}"></td>
+                <td th:text = "${dto.examDto.eng}"></td>
+                <td th:text = "${dto.examDto.hist}"></td>
+                <td th:text = "${dto.examDto.kor}+${dto.examDto.math}+${dto.examDto.eng}+${dto.examDto.hist}">합계</td>
+                <td th:text = "(${dto.examDto.kor}+${dto.examDto.math}+${dto.examDto.eng}+${dto.examDto.hist})/4">평균</td>
+                <td th:text = "${dto.rank}">석차</td>
+            </div>
+            <div th:if="${dto.examDto == null}">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </div>
+
+
+        </tr>
+
+    </table>
+</div>
+
+</body>
+</html>

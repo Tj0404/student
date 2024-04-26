@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{/js/check.js}"></script>
+</head>
+<body>
+<div class = "content" layout:fragment="content">
+    <form id="form" th:action="@{/student/insert}" method="post" th:object="${examDto}" class="container">
+        <div class="mb3">
+            <label class="form-label">학번</label>
+            <input id="examNo" type="text" th:field="*{examNo}" class="form-control">
+            <span th:errors="*{examNo}"></span>
+        </div>
+        <div class="mb3">
+            <label class="form-label">국어점수</label>
+            <input id="kor" type="text" th:field="*{kor}" class="form-control">
+            <span th:errors="*{kor}"></span>
+        </div>
+        <div class="mb3">
+            <label class="form-label">수학점수</label>
+            <input id="math" type="text" th:field="*{math}" class="form-control">
+            <span th:errors="*{math}"></span>
+        </div>
+        <div class="mb3">
+            <label class="form-label">영어점수</label>
+            <input id="eng" type="text" th:field="*{eng}" class="form-control">
+            <span th:errors="*{eng}"></span>
+        </div>
+        <div class="mb3">
+            <label class="form-label">역사점수</label>
+            <input id="hist" type="text" th:field="*{hist}" class="form-control">
+            <span th:errors="*{hist}"></span>
+        </div>
+        <input type="button" value="저장" class="btn btn-primary" onclick="check()">
+        <a href="/student">Back</a>
+    </form>
+<!--    ② 학생번호 항목의 값이 입력되어 있지 않은 경우에 ‘등록하기’ 버튼을 클릭하면 -->
+<!--    ‘학생번호가 입력 되지 않았습니다!’ 라는 알림창이 화면에 나타나고 -->
+<!--    포커스가 학생번호 항목으로 이동한다. -->
+<!--    ③ 모든 항목에 대하여 데이터 유효성 검사를 실시하며, -->
+<!--    유효성 체크에서 통과 하지 못하면 각 항목 옆에 -->
+<!--    유효성 검사 내용이 나타난다.-->
+</div>
+</body>
+</html>
